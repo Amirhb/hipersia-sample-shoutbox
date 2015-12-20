@@ -12,15 +12,15 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 $paths = array(__DIR__."/models");
-$isDevMode = false;
-
+$isDevMode = true;
+//print_r( $paths);
 // the connection configuration
 $dbParams = array(
     'driver'   => 'pdo_mysql',
     'user'     => 'root',
     'password' => '123',
-    'dbname'   => 'charlie',
+    'dbname'   => 'test',
 );
 
-$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode, null, null, false);
 $entityManager = EntityManager::create($dbParams, $config);

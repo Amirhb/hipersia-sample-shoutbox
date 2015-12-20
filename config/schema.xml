@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" defaultIdMethod="native" defaultPhpNamingMethod="underscore">
+  <table name="auth_group" idMethod="native" phpName="AuthGroup">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="80" required="true"/>
+    <unique name="name">
+      <unique-column name="name"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="auth_group_permissions" idMethod="native" phpName="AuthGroupPermissions">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="group_id" phpName="GroupId" type="INTEGER" required="true"/>
+    <column name="permission_id" phpName="PermissionId" type="INTEGER" required="true"/>
+    <foreign-key foreignTable="auth_group" name="auth_group_permission_group_id_689710a9a73b7457_fk_auth_group_id">
+      <reference local="group_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="auth_permission" name="auth_group__permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id">
+      <reference local="permission_id" foreign="id"/>
+    </foreign-key>
+    <index name="auth_group__permission_id_1f49ccbbdc69d2fc_fk_auth_permission_id">
+      <index-column name="permission_id"/>
+    </index>
+    <unique name="group_id">
+      <unique-column name="group_id"/>
+      <unique-column name="permission_id"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="auth_permission" idMethod="native" phpName="AuthPermission">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="content_type_id" phpName="ContentTypeId" type="INTEGER" required="true"/>
+    <column name="codename" phpName="Codename" type="VARCHAR" size="100" required="true"/>
+    <foreign-key foreignTable="django_content_type" name="auth__content_type_id_508cf46651277a81_fk_django_content_type_id">
+      <reference local="content_type_id" foreign="id"/>
+    </foreign-key>
+    <unique name="content_type_id">
+      <unique-column name="content_type_id"/>
+      <unique-column name="codename"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="auth_user" idMethod="native" phpName="AuthUser">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="password" phpName="Password" type="VARCHAR" size="128" required="true"/>
+    <column name="last_login" phpName="LastLogin" type="TIMESTAMP"/>
+    <column name="is_superuser" phpName="IsSuperuser" type="BOOLEAN" size="1" required="true"/>
+    <column name="username" phpName="Username" type="VARCHAR" size="30" required="true"/>
+    <column name="first_name" phpName="FirstName" type="VARCHAR" size="30" required="true"/>
+    <column name="last_name" phpName="LastName" type="VARCHAR" size="30" required="true"/>
+    <column name="email" phpName="Email" type="VARCHAR" size="254" required="true"/>
+    <column name="is_staff" phpName="IsStaff" type="BOOLEAN" size="1" required="true"/>
+    <column name="is_active" phpName="IsActive" type="BOOLEAN" size="1" required="true"/>
+    <column name="date_joined" phpName="DateJoined" type="TIMESTAMP" required="true"/>
+    <unique name="username">
+      <unique-column name="username"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="auth_user_groups" idMethod="native" phpName="AuthUserGroups">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" required="true"/>
+    <column name="group_id" phpName="GroupId" type="INTEGER" required="true"/>
+    <foreign-key foreignTable="auth_group" name="auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id">
+      <reference local="group_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="auth_user" name="auth_user_groups_user_id_4b5ed4ffdb8fd9b0_fk_auth_user_id">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <index name="auth_user_groups_group_id_33ac548dcf5f8e37_fk_auth_group_id">
+      <index-column name="group_id"/>
+    </index>
+    <unique name="user_id">
+      <unique-column name="user_id"/>
+      <unique-column name="group_id"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="auth_user_user_permissions" idMethod="native" phpName="AuthUserUserPermissions">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" required="true"/>
+    <column name="permission_id" phpName="PermissionId" type="INTEGER" required="true"/>
+    <foreign-key foreignTable="auth_user" name="auth_user_user_permissi_user_id_7f0938558328534a_fk_auth_user_id">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="auth_permission" name="auth_user_u_permission_id_384b62483d7071f0_fk_auth_permission_id">
+      <reference local="permission_id" foreign="id"/>
+    </foreign-key>
+    <index name="auth_user_u_permission_id_384b62483d7071f0_fk_auth_permission_id">
+      <index-column name="permission_id"/>
+    </index>
+    <unique name="user_id">
+      <unique-column name="user_id"/>
+      <unique-column name="permission_id"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="django_admin_log" idMethod="native" phpName="DjangoAdminLog">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="action_time" phpName="ActionTime" type="TIMESTAMP" required="true"/>
+    <column name="object_id" phpName="ObjectId" type="CLOB"/>
+    <column name="object_repr" phpName="ObjectRepr" type="VARCHAR" size="200" required="true"/>
+    <column name="action_flag" phpName="ActionFlag" type="SMALLINT" size="5" sqlType="smallint(5) unsigned" required="true"/>
+    <column name="change_message" phpName="ChangeMessage" type="CLOB" required="true"/>
+    <column name="content_type_id" phpName="ContentTypeId" type="INTEGER"/>
+    <column name="user_id" phpName="UserId" type="INTEGER" required="true"/>
+    <foreign-key foreignTable="auth_user" name="django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id">
+      <reference local="user_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="django_content_type" name="djang_content_type_id_697914295151027a_fk_django_content_type_id">
+      <reference local="content_type_id" foreign="id"/>
+    </foreign-key>
+    <index name="djang_content_type_id_697914295151027a_fk_django_content_type_id">
+      <index-column name="content_type_id"/>
+    </index>
+    <index name="django_admin_log_user_id_52fdd58701c5f563_fk_auth_user_id">
+      <index-column name="user_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="django_content_type" idMethod="native" phpName="DjangoContentType">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="app_label" phpName="AppLabel" type="VARCHAR" size="100" required="true"/>
+    <column name="model" phpName="Model" type="VARCHAR" size="100" required="true"/>
+    <unique name="django_content_type_app_label_45f3b1d93ec8c61c_uniq">
+      <unique-column name="app_label"/>
+      <unique-column name="model"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="django_migrations" idMethod="native" phpName="DjangoMigrations">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="app" phpName="App" type="VARCHAR" size="255" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="255" required="true"/>
+    <column name="applied" phpName="Applied" type="TIMESTAMP" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="django_session" idMethod="native" phpName="DjangoSession">
+    <column name="session_key" phpName="SessionKey" type="VARCHAR" size="40" primaryKey="true" required="true"/>
+    <column name="session_data" phpName="SessionData" type="CLOB" required="true"/>
+    <column name="expire_date" phpName="ExpireDate" type="TIMESTAMP" required="true"/>
+    <index name="django_session_de54fa62">
+      <index-column name="expire_date"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="harlie_lead" idMethod="native" phpName="HarlieLead">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="50" required="true"/>
+    <column name="email" phpName="Email" type="VARCHAR" size="254" required="true"/>
+    <column name="pub_date" phpName="PubDate" type="TIMESTAMP" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="harlie_lead_offers" idMethod="native" phpName="HarlieLeadOffers">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="lead_id" phpName="LeadId" type="INTEGER" required="true"/>
+    <column name="offer_id" phpName="OfferId" type="INTEGER" required="true"/>
+    <foreign-key foreignTable="harlie_lead" name="harlie_lead_offers_lead_id_224e9f50d5e4dec6_fk_harlie_lead_id">
+      <reference local="lead_id" foreign="id"/>
+    </foreign-key>
+    <foreign-key foreignTable="harlie_offer" name="harlie_lead_offers_offer_id_5e833ac62655be71_fk_harlie_offer_id">
+      <reference local="offer_id" foreign="id"/>
+    </foreign-key>
+    <index name="harlie_lead_offers_offer_id_5e833ac62655be71_fk_harlie_offer_id">
+      <index-column name="offer_id"/>
+    </index>
+    <unique name="lead_id">
+      <unique-column name="lead_id"/>
+      <unique-column name="offer_id"/>
+    </unique>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="harlie_offer" idMethod="native" phpName="HarlieOffer">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="title" phpName="Title" type="VARCHAR" size="50" required="true"/>
+    <column name="description" phpName="Description" type="VARCHAR" size="500" required="true"/>
+    <column name="type" phpName="Type" type="VARCHAR" size="50" required="true"/>
+    <column name="enabled" phpName="Enabled" type="BOOLEAN" size="1" required="true"/>
+    <column name="token" phpName="Token" type="VARCHAR" size="255" required="true"/>
+    <column name="asset" phpName="Asset" type="VARCHAR" size="100" required="true"/>
+    <column name="thank_you_view_id" phpName="ThankYouViewId" type="INTEGER" required="true"/>
+    <index name="harlie_offer_d2be4a66">
+      <index-column name="thank_you_view_id"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+  <table name="harlie_thankyou" idMethod="native" phpName="HarlieThankyou">
+    <column name="id" phpName="Id" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="name" phpName="Name" type="VARCHAR" size="50" required="true"/>
+    <column name="view_page" phpName="ViewPage" type="VARCHAR" size="50" required="true"/>
+    <column name="data_model_type" phpName="DataModelType" type="VARCHAR" size="50" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
+</database>
