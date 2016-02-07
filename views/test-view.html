@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+{% block assets %}
+{{ assets.renderAssets()|raw }}
+{% endblock %}
+</head>
+<body>
+<b>{{ name }}</b>
+
+<h1>CSRF sandbox</h1>
+<pre style="color: red"><?php echo $result; ?></pre>
+<form id="form" name="csrf_form" action="#" method="post">
+    <h2>Form using generated token.</h2>
+    <input type="hidden" name="hipersia_csrf" value="{{ hipersia_csrf }}">
+    <input type="text" name="title" value="" placeholder="title"><br>
+    <textarea name="body" rows="4" cols="50" ></textarea><br>
+    <input type="submit" value="Send form">
+</form>
+
+</body>
+</html>

@@ -27,5 +27,3 @@ phpunit.phar
 /phpunit.xml
 
 propel
-
-composer.lock

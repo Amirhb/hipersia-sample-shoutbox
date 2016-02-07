@@ -6,20 +6,10 @@
  * Time: 4:29 PM
  */
 
-class Index {
+session_start();
 
-    public $a;
-    public $b;
+require_once 'vendor/autoload.php'; // setup the autoloading
+require_once 'config/error-handler.php';
+require_once 'config/orm.php';
+require_once 'config/routes.php';
 
-    public function __set($name, $value) {
-        var_dump($name);
-        var_dump($value);
-        echo "test2\n";
-//        $this->$name = $value;
-    }
-}
-
-$obj = new Index;
-$obj->a = "test";
-
-echo "test\n";
