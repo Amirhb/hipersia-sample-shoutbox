@@ -5,9 +5,9 @@
  * Date: 12/26/15
  * Time: 2:05 PM
  */
-namespace App;
+namespace app\controllers;
 
-use Component\MigrationController as Migration;
+use hipersia\framework\MigrationController as Migration;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

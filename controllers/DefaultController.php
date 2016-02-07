@@ -5,12 +5,12 @@
  * Date: 12/26/15
  * Time: 2:05 PM
  */
-namespace App;
+namespace app\controllers;
 
-use Component\Controller as Controller;
+use hipersia\framework\Controller as Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Component\AssetBundle;
+use hipersia\framework\AssetBundle;
 
 class DefaultController extends Controller {
 
