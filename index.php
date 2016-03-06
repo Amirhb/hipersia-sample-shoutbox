@@ -10,6 +10,5 @@ session_start();
 
 require_once 'vendor/autoload.php'; // setup the autoloading
 require_once 'config/error-handler.php';
-require_once 'config/orm.php';
 require_once 'config/routes.php';
 

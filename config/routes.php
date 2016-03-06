@@ -12,7 +12,6 @@ $router = new League\Route\RouteCollection;
 $router->addRoute('GET', '/migrate', 'app\controllers\MigrationController::index');
 $router->addRoute('GET', '/test-view', 'app\controllers\DefaultController::testView');
 $router->addRoute('POST', '/test-view', 'app\controllers\DefaultController::testView');
-$router->addRoute('GET', '/cow', 'app\controllers\DefaultController::cow');
 $router->addRoute('GET', '/{uri}', 'app\controllers\DefaultController::index');
 $router->addRoute('GET', '/', 'app\controllers\DefaultController::welcome');
 
