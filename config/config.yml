@@ -1,0 +1,2 @@
+dsn: mysql://username:password@localhost/databasename
+name: mysql

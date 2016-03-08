@@ -9,17 +9,15 @@
 namespace app\models;
 
 
-class Post extends \Spot\Entity
+class Message extends \Spot\Entity
 {
-    protected static $table = 'posts';
+    protected static $table = 'messages';
     public static function fields()
     {
         return [
             'id'           => ['type' => 'integer', 'primary' => true, 'autoincrement' => true],
-            'title'        => ['type' => 'string', 'required' => true],
-            'body'         => ['type' => 'text', 'required' => true],
-            'status'       => ['type' => 'integer', 'default' => 0, 'index' => true],
-            'author_id'    => ['type' => 'integer', 'required' => true],
+            'author'       => ['type' => 'string', 'required' => true],
+            'message'      => ['type' => 'text', 'required' => true],
             'date_created' => ['type' => 'datetime', 'value' => new \DateTime()]
         ];
     }

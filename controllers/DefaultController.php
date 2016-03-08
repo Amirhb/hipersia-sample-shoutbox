@@ -7,17 +7,13 @@
  */
 namespace app\controllers;
 
+use hipersia\Base as base;
 use hipersia\framework\Controller as Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use hipersia\framework\AssetBundle;
 
 class DefaultController extends Controller {
-
-    protected function beforeAction() {
-//        echo "csrf token: " . $_SESSION[ 'hipersia_csrf' ] . "<br>";
-
-    }
 
     public function index( Request $request, Response $response, $args) {
 
@@ -33,27 +29,22 @@ class DefaultController extends Controller {
         return $response;
     }
 
-    public function cow( Request $request, Response $response) {
+    public function shoutBox( Request $request, Response $response) {
 
-        echo 'You have called Yek Action E Dust Dashtani Va Gaav';
-
-        return $response;
-    }
-
-    public function testView( Request $request, Response $response) {
+        $locator = base::getDbLocator();
+        $mapper = $locator->mapper('app\models\Message');
 
         if(!empty($_POST)) {
-            print_r($_POST);
-            die;
+            $message = $mapper->insert([
+                'author' => $_POST['author'],
+                'message' => $_POST['message']
+            ]);
         }
 
-        AssetBundle::registerJs('jquery', '/home/amir/public_html/mvc-app-base/views/js/jquery-2.1.4.js');
-        AssetBundle::registerJs('jquery2', '/home/amir/public_html/mvc-app-base/views/js/jquery-2.1.4.js');
-        AssetBundle::registerJs('jquery3', '/home/amir/public_html/mvc-app-base/views/js/jquery-2.1.4.js');
-        AssetBundle::registerCss('test', '/home/amir/public_html/mvc-app-base/views/css/test.css');
+        $messages = $mapper->all();
 
-        $name = "Amir";
+        AssetBundle::registerCss('bootstrap', '/home/amir/public_html/mvc-php-app/views/css/bootstrap.css');
 
-        return $this->render('test-view', ['name' => $name]);
+        return $this->render('shoutbox', ['messages' => $messages]);
     }
 }

@@ -16,7 +16,7 @@ class MigrationController extends Migration {
 
     public function index( Request $request, Response $response) {
 
-        $this->migrate('Entity\Post');
+        $this->migrate('app\models\Message');
 
         return $response;
     }
