@@ -43,7 +43,7 @@ class DefaultController extends Controller {
 
         $messages = $mapper->all();
 
-        AssetBundle::registerCss('bootstrap', '/home/amir/public_html/mvc-php-app/views/css/bootstrap.css');
+        AssetBundle::registerCss('bootstrap', __DIR__ . '/../views/css/bootstrap.css');
 
         return $this->render('shoutbox', ['messages' => $messages]);
     }
