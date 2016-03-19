@@ -88,6 +88,37 @@ $locator = base::getDbLocator();
 $mapper = $locator->mapper('app\models\Message');
 ```
 For more information on database queries provided by mappers, visit [here](http://phpdatamapper.com/docs/queries "Queries With Spot").
+An Expample on this which handles the shoutbox:
+```
+namespace app\controllers;
 
+use hipersia\Base as base;
+use hipersia\framework\Controller as Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use hipersia\framework\AssetBundle;
+
+class DefaultController extends Controller {
+
+    public function shoutBox( Request $request, Response $response) {
+
+        $locator = base::getDbLocator();
+        $mapper = $locator->mapper('app\models\Message');
+
+        if(!empty($_POST)) {
+            $message = $mapper->insert([
+                'author' => $_POST['author'],
+                'message' => $_POST['message']
+            ]);
+        }
+
+        $messages = $mapper->all();
+
+        AssetBundle::registerCss('bootstrap', __DIR__ . '/../views/css/bootstrap.css');
+
+        return $this->render('shoutbox', ['messages' => $messages]);
+    }
+}
+```
 ## Assets
 ## View
