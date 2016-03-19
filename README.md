@@ -8,16 +8,20 @@ Table of contents
 
 ### Composer
 Like other state-of-the-art PHP apps, you should use [Composer](https://getcomposer.org/download/ "Composer") to install all needed dependencies.
-
+```
+composer install
+```
 ## Configuration
-
 ### Database
-#### Models
-#### Migration
-
-### Assets
-
-
-## Routing
+There's a config.yml file in the config folder of the project's root. You should customize it based your own environment.
+```
+dsn: mysql://username:password@localhost/databasename
+name: mysql
+```
+Data-Mapping is supported by [Spot ORM](http://phpdatamapper.com "Spot ORM") and you can change dsn and name properties to support other databases which get supported bt Spot ORM.
+## Models
+## Migration
 ## Controllers
+## Assets
+## Routing
 ## View
