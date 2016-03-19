@@ -20,10 +20,9 @@ name: mysql
 ```
 Data-Mapping is supported by [Spot ORM](http://phpdatamapper.com "Spot ORM") and you can change dsn and name properties to support other databases which get supported by Spot ORM.
 ## Models
-Models are located as PHP files in the Models folder. Each model-file is php class which inherited by \Spot\Entity .
+Models are located as PHP files in the Models folder. Each model-file is a php class which inherited from \Spot\Entity .
 ```
 namespace app\models;
-
 
 class Message extends \Spot\Entity
 {
@@ -41,7 +40,29 @@ class Message extends \Spot\Entity
 ```
 For more information on how to develop a Spot Entity, visit [here](http://phpdatamapper.com/docs/entities/ "Working With Entities").
 ## Migration
+You can run migration to create tables based on your models. To do this, you should visit url-of-your-project/migrate.
+The default Migration controller looks like as follows:
+```
+namespace app\controllers;
+
+use hipersia\framework\MigrationController as Migration;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+
+class MigrationController extends Migration {
+
+    public function index( Request $request, Response $response) {
+
+        $this->migrate('app\models\Message');
+
+        return $response;
+    }
+}
+```
 ## Controllers
+
+### Using Models
 ## Assets
 ## Routing
 ## View
