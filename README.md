@@ -163,3 +163,13 @@ To register css and javascript files, like we pointed earlier in this guide, you
 ```
 AssetBundle::registerCss('bootstrap', __DIR__ . '/../views/css/bootstrap.css');
 ```
+And to generate related html tags for using assets, you should add the following to the appropriate view template file:
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shoutbox Web-App by Hipersia Micro-MVC PHP-Framework</title>
+    {{ assets.renderAssets|raw }}
+</head>
+...
+```
