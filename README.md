@@ -81,6 +81,25 @@ class DefaultController extends Controller {
 }
 ```
 ### Routing
+You can define new routes by editing routes.php which can be found in config folder in the project's root. It's based on php league [Route](http://route.thephpleague.com "Route") package.
+```
+use Symfony\Component\HttpFoundation\Request;
+
+$router = new League\Route\RouteCollection;
+
+$router->addRoute('GET', '/migrate', 'app\controllers\MigrationController::index');
+$router->addRoute('GET', '/welcome', 'app\controllers\DefaultController::welcome');
+$router->addRoute('GET', '/', 'app\controllers\DefaultController::shoutBox');
+$router->addRoute('POST', '/', 'app\controllers\DefaultController::shoutBox');
+$router->addRoute('GET', '/{uri}', 'app\controllers\DefaultController::index');
+
+$dispatcher = $router->getDispatcher();
+
+$request = Request::createFromGlobals();
+$response = $dispatcher->dispatch($request->getMethod(), $request->getPathInfo());
+
+$response->send();
+```
 ### Working with Models in your Controller
 To access Spot's mapper. You should use base methods of Hipersia framework as follows:
 ```
@@ -121,4 +140,26 @@ class DefaultController extends Controller {
 }
 ```
 ## Assets
+Hipersia provides the AssetBundle class to manage assets like css and javascript files. You can use the following syntax to add your asset to be used in the related view.
+For Css files:
+```
+AssetBundle::registerCss($name, $source);
+```
+For Javascript files:
+```
+AssetBundle::registerJs($name, $source);
+```
+$name is the final name that you want to use for your script and $source is the physical address of the file.
 ## View
+For the view, Hipersia uses [Twig](http://twig.sensiolabs.org/ "Twig") template engine. View files are located in View folder in project's root by default.
+To render a view, you should use the render method that Hipersia provides like the following:
+```
+return $this->render($view, $data);
+```
+$view is the view file's name without it's extension and $data is an array which contains variables which is being passed to the view.
+For more information how to create twig templates, visit [Twig Documentation](http://twig.sensiolabs.org/documentation "Twig Documentation").
+### Using Assets in Views
+To register css and javascript files, like we pointed earlier in this guide, you can use the AssetBundle class before rendering the view.
+```
+AssetBundle::registerCss('bootstrap', __DIR__ . '/../views/css/bootstrap.css');
+```
