@@ -49,7 +49,6 @@ use hipersia\framework\MigrationController as Migration;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 class MigrationController extends Migration {
 
     public function index( Request $request, Response $response) {
@@ -61,8 +60,34 @@ class MigrationController extends Migration {
 }
 ```
 ## Controllers
+Controllers are located in Controller folder project's root. A controller inherits from hipersia\framework\Controller and it uses Response and Request object of HttpFoundation.
+```
+namespace app\controllers;
 
-### Using Models
+use hipersia\Base as base;
+use hipersia\framework\Controller as Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use hipersia\framework\AssetBundle;
+
+class DefaultController extends Controller {
+
+    public function index( Request $request, Response $response, $args) {
+
+        echo 'You have called ' . $args['uri'];
+
+        return $response;
+    }
+}
+```
+### Routing
+### Working with Models in your Controller
+To access Spot's mapper. You should use base methods of Hipersia framework as follows:
+```
+$locator = base::getDbLocator();
+$mapper = $locator->mapper('app\models\Message');
+```
+For more information on database queries provided by mappers, visit [here](http://phpdatamapper.com/docs/queries "Queries With Spot").
+
 ## Assets
-## Routing
 ## View
