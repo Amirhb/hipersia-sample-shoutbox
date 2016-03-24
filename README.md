@@ -168,3 +168,9 @@ And to generate related html tags for using assets, you should add the following
 </head>
 ...
 ```
+### Csrf Support
+Hipersia forces csrf-protection for POST requests. You have to add the following field in your twig template when POST-ing a form:
+```
+<input type="hidden" name="hipersia_csrf" value="{{ hipersia_csrf }}">
+```
+Hipersia is in charge of ensuring that if you've sent the correct value. There's no need for you to add any code to check it.
