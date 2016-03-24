@@ -8,7 +8,6 @@
 
 namespace app\models;
 
-
 class Message extends \Spot\Entity
 {
     protected static $table = 'messages';

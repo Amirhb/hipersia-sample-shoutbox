@@ -11,7 +11,6 @@ use hipersia\framework\MigrationController as Migration;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-
 class MigrationController extends Migration {
 
     public function index( Request $request, Response $response) {
